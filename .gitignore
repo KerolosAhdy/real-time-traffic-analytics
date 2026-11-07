@@ -1,0 +1,22 @@
+# dbt generated files
+target/
+dbt_packages/
+logs/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+venv/
+venv312/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# OS files
+.DS_Store
+Thumbs.db

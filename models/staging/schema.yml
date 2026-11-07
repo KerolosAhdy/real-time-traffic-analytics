@@ -1,0 +1,110 @@
+version: 2
+
+models:
+  - name: stg_tms_sensors
+    columns:
+      - name: id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_tms_stations
+    columns:
+      - name: id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_tms_meausurments
+    columns:
+      - name: sensor_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_tms_sensors')
+                field: id
+
+      - name: station_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_tms_stations')
+                field: id     
+  - name: stg_tms_maintenance
+    columns:
+      - name: task_id
+        data_tests:
+          - unique
+          - not_null  
+
+  - name: stg_weather_data
+    columns:
+      - name: w_station_id
+        data_tests:
+          - not_null
+
+      - name: w_sensor_id
+        data_tests:
+          - not_null 
+
+  - name: stg_weather_forecast
+    columns:
+      - name: id
+        data_tests:
+          - not_null
+
+      - name: forecast_time
+        data_tests:
+          - not_null
+
+      - name: road_number
+        data_tests:
+          - not_null
+
+      - name: section_number
+        data_tests:
+          - not_null                                 
+
+  - name: stg_weather_sections
+    columns:
+      - name: id
+        data_tests:
+          - unique
+          - not_null          
+
+  - name: stg_maintenance_routes
+    columns:
+      - name: properties_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: properties_start_time
+        data_tests:
+          - not_null
+
+      - name: properties_end_time
+        data_tests:
+          - not_null  
+
+  - name: stg_maintenance_tracking_tasks
+    columns:
+      - name: id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: task_name
+        data_tests:
+          - not_null
+
+      - name: dataupdatedtime
+        data_tests:
+          - not_null
+
+  - name: stg_variable_signs
+    columns:
+      - name: properties_id
+        data_tests:
+          - unique
+          - not_null                            

@@ -1,0 +1,128 @@
+version: 2
+
+models:
+  - name: int_tms_measurements_enriched
+    columns:
+      - name: measured_time
+        data_tests:
+          - not_null
+
+      - name: sensor_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_tms_sensors')
+                field: id
+
+      - name: station_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_tms_stations')
+                field: id
+
+      - name: value
+        data_tests:
+          - not_null
+  - name: int_weather_forecast_enriched
+    columns:
+      - name: section_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_weather_sections')
+                field: id
+
+      - name: forecast_time
+        data_tests:
+          - not_null
+
+      - name: road_number
+        data_tests:
+          - not_null  
+  - name: int_weather_data_clean
+    columns:
+      - name: w_station_id
+        data_tests:
+          - not_null
+
+      - name: w_sensor_id
+        data_tests:
+          - not_null
+
+      - name: w_sensor_measured_time
+        data_tests:
+          - not_null      
+
+
+  - name: int_maintenance_routes_tasks
+    columns:
+      - name: properties_id
+        data_tests:
+          - not_null
+
+      - name: route_task
+        data_tests:
+          - not_null
+
+      - name: task_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_maintenance_tracking_tasks')
+                field: id
+
+
+  - name: int_variable_signs_clean
+    columns:
+      - name: properties_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: properties_effect_date
+        data_tests:
+          - not_null
+
+  - name: int_tms_maintenance_tasks
+    columns:
+      - name: task_id
+        data_tests:
+          - not_null
+
+      - name: task_name
+        data_tests:
+          - not_null
+
+      - name: task_dictionary_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_maintenance_tracking_tasks')
+                field: id
+
+  - name: int_traffic_message_locations_enriched
+    columns:
+      - name: id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: subtypecode
+        data_tests:
+          - not_null
+
+      - name: location_type_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_traffic_message_locations_ty')
+                field: id
+
+      - name: location_type_description
+        data_tests:
+          - not_null                

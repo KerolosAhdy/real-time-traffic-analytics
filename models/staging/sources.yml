@@ -1,0 +1,23 @@
+
+version: 2
+
+sources:
+  - name: raw_tms
+    schema: public
+    tables:
+      - name: tms_sensors
+      - name: tms_stations
+      - name: tms_meausurments
+      - name: tms_maintenance
+      - name: cleaned_maintenance_routes
+      - name: maintenance_tracking_tasks_english_only
+      - name: cleaned_variable_signs
+      - name: traffic_message_locations_english_only
+      - name: traffic_message_locations_ty_english_only
+
+  - name: raw_weather
+    schema: public
+    tables:
+      - name: w_data_long_clean
+      - name: weather_forecast_long
+      - name: sections_wide

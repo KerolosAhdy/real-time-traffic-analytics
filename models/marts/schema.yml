@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: fct_traffic_measurements
+    columns:
+
+      - name: measured_time
+        data_tests:
+          - not_null
+
+      - name: sensor_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_tms_sensors')
+                field: id
+
+      - name: station_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_tms_stations')
+                field: id
+
+      - name: value
+        data_tests:
+          - not_null
+
+  - name: dim_tms_sensors
+    columns:
+      - name: sensor_id
+        data_tests:
+          - unique
+          - not_null    
+
+  - name: dim_tms_stations
+    columns:
+      - name: station_id
+        data_tests:
+          - unique
+          - not_null        
