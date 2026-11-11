@@ -40,4 +40,198 @@ models:
       - name: station_id
         data_tests:
           - unique
+          - not_null  
+
+
+  - name: mart_weather_station_coverage
+    columns:
+      - name: tms_number
+        data_tests:
+          - unique
+          - not_null
+
+      - name: weather_station_id
+        data_tests:
+          - not_null
+
+      - name: distance_km
+        data_tests:
+          - not_null
+
+      - name: coverage_status
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - EXCELLENT
+                  - GOOD
+                  - ACCEPTABLE
+                  - POOR
+
+
+  - name: mart_weather_data
+    columns:
+      - name: w_station_id
+        data_tests:
+          - not_null
+
+      - name: w_sensor_id
+        data_tests:
+          - not_null
+
+      - name: w_sensor_name
+        data_tests:
+          - not_null
+
+      - name: w_sensor_measured_time
+        data_tests:
+          - not_null
+
+      - name: is_out_of_range
+        data_tests:
+          - not_null
+
+      - name: is_max_visibility
+        data_tests:
+          - not_null                  
+
+
+  - name: mart_maintenance_routes
+    columns:
+      - name: properties_id
+        data_tests:
+          - not_null
+
+      - name: task_name
+        data_tests:
+          - not_null
+
+      - name: is_task_type_unknown
+        data_tests:
+          - not_null
+
+      - name: properties_start_time
+        data_tests:
+          - not_null
+
+      - name: properties_end_time
+        data_tests:
           - not_null        
+
+
+  - name: mart_tms_maintenance
+    columns:
+      - name: task_id
+        data_tests:
+          - not_null
+
+      - name: dictionary_task_name
+        data_tests:
+          - not_null
+
+      - name: is_task_type_unknown
+        data_tests:
+          - not_null    
+
+
+
+  - name: mart_variable_signs
+    columns:
+      - name: properties_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: properties_effect_date
+        data_tests:
+          - not_null
+
+      - name: properties_reliability
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - NORMAL
+                  - MALFUNCTION
+
+      - name: is_malfunction
+        data_tests:
+          - not_null
+
+      - name: has_display_value
+        data_tests:
+          - not_null
+
+      - name: display_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - NUMERIC
+                  - TEXT_OR_OTHER
+
+
+
+
+  - name: mart_traffic_messages
+    columns:
+      - name: id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: locationcode
+        data_tests:
+          - not_null
+
+      - name: dataupdatedtime
+        data_tests:
+          - not_null
+
+      - name: location_type_description
+        data_tests:
+          - not_null
+
+      - name: has_coordinates
+        data_tests:
+          - not_null
+
+
+
+
+  - name: mart_weather_forecast
+    columns:
+      - name: section_id
+        data_tests:
+          - not_null
+
+      - name: forecast_time
+        data_tests:
+          - not_null
+
+      - name: horizon_hours
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 2, 4, 6, 12]
+
+      - name: is_forecast
+        data_tests:
+          - not_null
+
+      - name: record_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - CURRENT
+                  - FORECAST
+
+      - name: geometry_valid
+        data_tests:
+          - not_null

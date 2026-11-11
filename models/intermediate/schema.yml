@@ -126,3 +126,23 @@ models:
       - name: location_type_description
         data_tests:
           - not_null                
+          
+
+  - name: int_weather_tms_nearest_stations
+    columns:
+      - name: tms_number
+        data_tests:
+          - unique
+          - not_null
+
+      - name: weather_station_id
+        data_tests:
+          - not_null
+
+      - name: distance_km
+        data_tests:
+          - not_null
+
+      - name: distance_category
+        data_tests:
+          - not_null

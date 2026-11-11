@@ -15,9 +15,11 @@ sources:
       - name: traffic_message_locations_english_only
       - name: traffic_message_locations_ty_english_only
 
+
   - name: raw_weather
     schema: public
     tables:
       - name: w_data_long_clean
       - name: weather_forecast_long
       - name: sections_wide
+      - name: weather_stations      
